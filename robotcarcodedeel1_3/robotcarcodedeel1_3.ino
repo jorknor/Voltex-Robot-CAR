@@ -279,7 +279,7 @@ void loadSettings() {
   if (s >= 50 && s <= 255) baseSpeed = s;
   if (m <= 2) state = m;
 }
-
+/////
 void clearSettings() {
   baseSpeed = 150;
   state = 0;
