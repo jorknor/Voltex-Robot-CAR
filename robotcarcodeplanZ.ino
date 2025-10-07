@@ -36,9 +36,9 @@ const int IN3 = 9;   // right dir
 const int IN4 = 10;
 
 // ---------- ULTRASOON ----------
-const int trigPin = 7;
+const int trigPin = 7; 
 const int echoPin = 8;
-
+// er zijn drie ultrasonische sensors, dus max 6 pinnen
 // ---------- OUTPUTS ----------
 const int buzzer = 11;
 const int ledLeft = 12;
