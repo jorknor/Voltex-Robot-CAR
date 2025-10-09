@@ -35,9 +35,16 @@ const int ENB = 6;   // PWM (right speed)
 const int IN3 = 9;   // right dir
 const int IN4 = 10;
 
-// ---------- ULTRASOON ----------
-const int trigPin = 7; 
-const int echoPin = 8;
+// ---------- ULTRASOON (3x HC-SR04) ----------
+const int trigFront = 7;
+const int echoFront = 8;
+
+const int trigLeft  = A4;   // of een andere vrije digitale pin
+const int echoLeft  = A5;
+
+const int trigRight = 2;
+const int echoRight = 9;
+
 // er zijn drie ultrasonische sensors, dus max 6 pinnen
 // ---------- OUTPUTS ----------
 const int buzzer = 11;
