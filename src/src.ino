@@ -26,7 +26,6 @@ const int sensorCenter  = A1;
 const int sensorRight   = A0;
 
 // ---------- MOTOR DRIVER (L298N) ----------
-// Let op: dit mapping gebruikt standaard Arduino UNO-compatibele pinnen (ATmega328P)
 const int ENA = 3;   // PWM (left speed)
 const int IN1 = 4;   // left dir
 const int IN2 = 5;
@@ -35,17 +34,16 @@ const int ENB = 6;   // PWM (right speed)
 const int IN3 = 9;   // right dir
 const int IN4 = 10;
 
-// ---------- ULTRASOON (3x HC-SR04) ----------
+// ---------- ULTRASOON (HC-SR04) ----------
 const int trigFront = 7;
 const int echoFront = 8;
 
-const int trigLeft  = A4;   // of een andere vrije digitale pin
+const int trigLeft  = A4;
 const int echoLeft  = A5;
 
 const int trigRight = 2;
-const int echoRight = 9;
+const int echoRight = 13; // aangepast, pin 9 was al in gebruik
 
-// er zijn drie ultrasonische sensors, dus max 6 pinnen
 // ---------- OUTPUTS ----------
 const int buzzer = 11;
 const int ledLeft = 12;
@@ -96,13 +94,11 @@ void saveSettings();
 void loadSettings();
 void clearSettings();
 
- void idleState(struct State* currState) {
-        //if we recieve the startcar event we switch to slave mode
-        if (currState->currentEvent == StartCar) {
-            currState->id = Slave;
-        }
-    }
-
+void idleState(struct State* currState) {
+  if (currState->currentEvent == StartCar) {
+    currState->id = Slave;
+  }
+}
 
 void setup() {
   // sensors
@@ -111,44 +107,40 @@ void setup() {
   pinMode(sensorCenter, INPUT);
   pinMode(sensorRight, INPUT);
 
- registerNewState(Idle, &idleState);
+  registerNewState(Idle, &idleState);
 
   // motor driver pins
   pinMode(ENA, OUTPUT); pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
   pinMode(ENB, OUTPUT); pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
 
-  // ultrasonic
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
+  // ultrasonic front sensor
+  pinMode(trigFront, OUTPUT);
+  pinMode(echoFront, INPUT);
 
   // outputs
   pinMode(buzzer, OUTPUT);
   pinMode(ledLeft, OUTPUT);
   pinMode(ledRight, OUTPUT);
 
-  // Serial (HC-05 -> hardware Serial: pins 0/1)
   Serial.begin(9600);
 
-  // LCD
   lcd.init();
   lcd.backlight();
 
-  // load
   loadSettings();
   stopMotors();
   updateDisplay(true);
 }
 
 void loop() {
-  // Bluetooth commands (via hardware Serial)
   if (Serial.available()) {
     char c = Serial.read();
     handleCommand(c);
     lastCommandTime = millis();
   }
-      runCurrentState();
 
-  // Timeout when in REMOTE mode (safety)
+  runCurrentState();
+
   if (state == 2 && millis() - lastCommandTime > remoteTimeout) {
     stopMotors();
     state = 0;
@@ -156,20 +148,17 @@ void loop() {
     beepAsync(1);
   }
 
-  // Behavior per state
   switch (state) {
-    case 0: /* STOP */ break;
+    case 0: break;
     case 1: lineFollowStep(); break;
-    case 2: /* REMOTE: handled by commands */ break;
+    case 2: break;
   }
 
-  // display update
   if (millis() - lastDisplayUpdate > displayInterval) {
     updateDisplay(false);
     lastDisplayUpdate = millis();
   }
 
-  // buzzer turn off
   if (millis() > buzzerUntil) digitalWrite(buzzer, LOW);
 }
 
@@ -183,17 +172,16 @@ void handleCommand(char cmd) {
   else if (cmd == 'B') { state = 2; backward(baseSpeed, baseSpeed); }
   else if (cmd == 'L') { state = 2; forward(baseSpeed - turnBoost, baseSpeed + turnBoost); }
   else if (cmd == 'R') { state = 2; forward(baseSpeed + turnBoost, baseSpeed - turnBoost); }
-  else if (cmd == 'Q') { state = 2; forward(baseSpeed - 30, baseSpeed + 30); } // soft left
-  else if (cmd == 'E') { state = 2; forward(baseSpeed + 30, baseSpeed - 30); } // soft right
+  else if (cmd == 'Q') { state = 2; forward(baseSpeed - 30, baseSpeed + 30); }
+  else if (cmd == 'E') { state = 2; forward(baseSpeed + 30, baseSpeed - 30); }
   else if (cmd == 'S') { state = 0; stopMotors(); }
   else if (cmd == '+') { baseSpeed = min(baseSpeed + 20, 255); }
   else if (cmd == '-') { baseSpeed = max(baseSpeed - 20, 50); }
-  else if (cmd == 'U') { baseSpeed = 200; } // preset fast
-  else if (cmd == 'D') { baseSpeed = 100; } // preset slow
-  else if (cmd == 'W') { saveSettings(); beepAsync(2); } // write
-  else if (cmd == 'C') { clearSettings(); beepAsync(2); } // clear defaults
+  else if (cmd == 'U') { baseSpeed = 200; }
+  else if (cmd == 'D') { baseSpeed = 100; }
+  else if (cmd == 'W') { saveSettings(); beepAsync(2); }
+  else if (cmd == 'C') { clearSettings(); beepAsync(2); }
 
-  // save settings only if changed
   if (prevState != state || prevSpeed != baseSpeed) {
     saveSettings();
   }
@@ -236,7 +224,7 @@ void beepAsync(int times) {
   digitalWrite(buzzer, HIGH);
 }
 
-// ---------- LINE FOLLOW + FAIL-SAFE ----------
+// ---------- LINE FOLLOW ----------
 void lineFollowStep() {
   int fl = analogRead(sensorFarLeft);
   int l  = analogRead(sensorLeft);
@@ -253,7 +241,6 @@ void lineFollowStep() {
   if (dist > 0 && dist < safeDistance) speedAdj = 0;
   else if (dist > 0 && dist < safeDistance + 5) speedAdj = baseSpeed / 2;
 
-  // logic
   if (C && !L && !R && !FL) forward(speedAdj, speedAdj);
   else if (L && !C && !R) forward(speedAdj - turnBoost, speedAdj + turnBoost);
   else if (R && !C && !L) forward(speedAdj + turnBoost, speedAdj - turnBoost);
@@ -261,7 +248,6 @@ void lineFollowStep() {
   else if (L && C) forward(speedAdj - 40, speedAdj + 40);
   else if (R && C) forward(speedAdj + 40, speedAdj - 40);
   else {
-    // fail-safe: zoek lijn terug door langzaam draaien
     forward(-80, 80);
     digitalWrite(ledLeft, HIGH); digitalWrite(ledRight, LOW);
   }
@@ -272,11 +258,11 @@ int getDistance() {
   if (millis() - lastDistMeasure < distInterval) return cachedDist;
   lastDistMeasure = millis();
 
-  digitalWrite(trigPin, LOW); delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH); delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
+  digitalWrite(trigFront, LOW); delayMicroseconds(2);
+  digitalWrite(trigFront, HIGH); delayMicroseconds(10);
+  digitalWrite(trigFront, LOW);
 
-  long duration = pulseIn(echoPin, HIGH, 20000);
+  long duration = pulseIn(echoFront, HIGH, 20000);
   if (duration == 0) return cachedDist;
   cachedDist = (int)(duration * 0.034 / 2);
   return cachedDist;
