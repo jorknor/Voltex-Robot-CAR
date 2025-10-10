@@ -14,7 +14,7 @@
        2 = REMOTE (besturen via bluetooth)
    - Non-blocking buzzer, fail-safe lijnzoeker, EEPROM schrijfoptimalisatie
 */
-
+#include "MainStateMachine.h"
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
@@ -96,12 +96,22 @@ void saveSettings();
 void loadSettings();
 void clearSettings();
 
+ void idleState(struct State* currState) {
+        //if we recieve the startcar event we switch to slave mode
+        if (currState->currentEvent == StartCar) {
+            currState->id = Slave;
+        }
+    }
+
+
 void setup() {
   // sensors
   pinMode(sensorFarLeft, INPUT);
   pinMode(sensorLeft, INPUT);
   pinMode(sensorCenter, INPUT);
   pinMode(sensorRight, INPUT);
+
+ registerNewState(Idle, &idleState);
 
   // motor driver pins
   pinMode(ENA, OUTPUT); pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
@@ -136,6 +146,7 @@ void loop() {
     handleCommand(c);
     lastCommandTime = millis();
   }
+      runCurrentState();
 
   // Timeout when in REMOTE mode (safety)
   if (state == 2 && millis() - lastCommandTime > remoteTimeout) {
