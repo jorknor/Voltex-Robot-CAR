@@ -1,10 +1,8 @@
 #pragma once
-#DEFINE leftTrigPin  D2
+#DEFINE trigPin  D2
 #DEFINE leftEchoPin  D3
-#DEFINE rightTrigPin  D4
-#DEFINE rightEchoPin  D5
-#DEFINE middleTrigPin  D6
-#DEFINE middleEchoPin  D7
+#DEFINE rightEchoPin  D4
+#DEFINE middleEchoPin  D5
 unsigned int getDistanceLeft();
 unsigned int getDistanceMiddle();
 unsigned int getDistanceRight();
