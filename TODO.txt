@@ -1,0 +1,15 @@
+
+Taak:                 Naam:           Status:
+
+LineSensor driver       - Niemand       Niet klaar
+
+DistanceSensor driver   - Alex          Bezig
+
+Bluetooth               - Jorrit        Bezig
+
+Motor driver            - Niemand       Niet klaar
+
+MainStateMachine        - Niemand       Niet klaar
+
+
+
