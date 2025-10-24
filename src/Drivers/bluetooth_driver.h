@@ -5,3 +5,4 @@
 extern String inputString;
 extern bool stringComplete;
 void bluetoothUpdate();
+void bluetoothInit();
