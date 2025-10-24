@@ -1,0 +1,28 @@
+
+
+port B:
+    13 = bluetooth TX
+    12 = bluetooth RX
+    11 = echo A
+    10 = echo B
+    9  = echo C
+    8  = trig all
+
+port D:
+    7 = motor B in3
+    6 = motor A pwm
+    5 = motor B pwm
+    4 = motor B in4
+    3 = motor A in1
+    2 = motor A in2
+    1 = uart RX
+    0 = uart TX
+
+port C:
+    5 = LCD SDA
+    4 = LCD SCL
+    3 = line sensor A
+    2 = line sensor B
+    1 = line sensor C
+    0 = line sensor D
+
