@@ -1,3 +1,4 @@
+bool lineSensors [4] ={0};
 void lineSensorInit(){
   pinmode (HLS_PIN, input);
   pinmode (MLS_PIN, input);
@@ -10,3 +11,4 @@ void lineSensorUpdate(){
   lineSensors[2] = digitalRead(MRS_PIN);
   lineSensors[3] = digitalRead(HLS_PIN);
 }
+
