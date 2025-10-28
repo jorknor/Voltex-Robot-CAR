@@ -1,6 +1,7 @@
 // === LINESENSOR TEST ===
 // Werkt op ATmega328P Xplained Mini of Arduino Uno
-
+#include "src/Drivers/LineSenor.h"
+  
 const int sensorLeft   = A0;
 const int sensorCenter = A1;
 const int sensorRight  = A2;
