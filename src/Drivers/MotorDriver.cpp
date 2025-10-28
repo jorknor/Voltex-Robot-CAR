@@ -21,6 +21,10 @@ void setMotorSpeed(unsigned char speed) {
   currentMotorBSpeed = speed;
 }
 
+void changeMotorSpeed(unsigned char speed) {
+  currentMotorASpeed -= speed;
+  currentMotorBSpeed -= speed;
+}
 
 void setMotorState(enum MotorState newMotorState) {
   if (currentMotorState == newMotorState) {

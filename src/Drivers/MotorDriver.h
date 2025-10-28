@@ -26,8 +26,11 @@ enum MotorState {
 //the current motor direction
 extern enum MotorState currentMotorState;
 
-//set the speed of the motors
+//set the absolute speed of the motors
 void setMotorSpeed(unsigned char speed);
+
+//chang the speed by a relative amount
+void changeMotorSpeed(unsigned char speed);
 
 //set the direction of the car
 void setMotorState(enum MotorState newMotorState);
