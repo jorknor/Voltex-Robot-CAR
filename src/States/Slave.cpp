@@ -4,19 +4,19 @@
 #include "../Drivers/MotorDriver.h"
 
 void slaveState(struct State* currState){
-  if (HLS_PIN == MLS_PIN == MRS_PIN == HRS_PIN){
+  if (lineSensors[0] && lineSensors[1] && lineSensors[2] && lineSensors[3]){
     setMotorState(FORWARD);
   }
-  else if(MLS_PIN == TRUE){
+  else if(lineSensors[1] == TRUE){
     setMotorState(LEFT);
   }
-  else if(HLS_PIN == TRUE){
+  else if(lineSensors[0] == TRUE){
     setMotorState(HARD_LEFT);
   }
-  else if(MRS_PIN == TRUE){
+  else if(lineSensors[2] == TRUE){
     setMotorState(RIGHT);
   }
-  else if(HRS_PIN == TRUE){
+  else if(lineSensors[3] == TRUE){
     setMotorState(HARD_RIGHT);
   }
   else{
@@ -25,4 +25,5 @@ void slaveState(struct State* currState){
       }
    }
 }
+
 
