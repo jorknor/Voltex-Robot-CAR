@@ -9,6 +9,7 @@ void lineSensorUpdate(){
   lineSensors[0] = digitalRead(HLS_PIN);
   lineSensors[1] = digitalRead(MLS_PIN);
   lineSensors[2] = digitalRead(MRS_PIN);
-  lineSensors[3] = digitalRead(HLS_PIN);
+  lineSensors[3] = digitalRead(HRS_PIN);
 }
+
 
