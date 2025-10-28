@@ -45,6 +45,7 @@ int getDistance();
 void setup() {
   Serial.begin(9600);
   setMoterState(FOWARDS);
+  setMoterSpeed 255
 } 
   
 void loop() {
