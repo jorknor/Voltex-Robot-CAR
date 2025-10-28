@@ -44,15 +44,45 @@ int getDistance();
 
 void setup() {
   Serial.begin(9600);
-  setMoterState(FOWARDS);
-  setMoterSpeed 255
-} 
-  
-void loop() {
- 
- 
-  
+
+  pinMode(ENA, OUTPUT); pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(ENB, OUTPUT); pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+
+  lcd.init();
+  lcd.backlight();
+  lcd.print("Motor Test Start");
+
+  Serial.println("== Motor Test Start ==");
+
+  // Test vooruit
+  forward(200, 200);
+  lcd.setCursor(0,1);
+  lcd.print("Vooruit");
+  delay(2000);
+
+  // Test achteruit
+  backward(200, 200);
+  lcd.setCursor(0,1);
+  lcd.print("Achteruit ");
+  delay(2000);
+
+  // Test links/rechts
+  left();
+  lcd.setCursor(0,1);
+  lcd.print("Links     ");
+  delay(2000);
+
+  right();
+  lcd.setCursor(0,1);
+  lcd.print("Rechts    ");
+  delay(2000);
+
+  stopMotors();
+  lcd.setCursor(0,1);
+  lcd.print("Stop      ");
+  Serial.println("== Motor Test Klaar ==");
 }
+
 
 // ---------- MOTOR FUNCTIONS ----------
 void setLeftMotor(int speed) {
