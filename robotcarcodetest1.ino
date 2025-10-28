@@ -5,11 +5,6 @@
 #include <LiquidCrystal_I2C.h>
 #include "Drivers/MoterDriver.h"
 // ---------- PINS ----------
-// Line sensors (4x)
-const int sensorLeft     = A0;
-const int sensorMidLeft  = A1;
-const int sensorMidRight = A2;
-const int sensorRight    = A3;
 
 // Motor A (L298N)
 const int ENA = 3;
@@ -22,13 +17,6 @@ const int IN3 = 9;
 const int IN4 = 10;
 
 // Ultrasonic
-const int trigPin = 7;
-const int echoPin = 8;
-
-// Buzzer + LEDs
-const int buzzer   = 11;
-const int ledLeft  = 12;
-const int ledRight = 13;
 
 // ---------- DISPLAY ----------
 LiquidCrystal_I2C lcd(0x27, 16, 2);
