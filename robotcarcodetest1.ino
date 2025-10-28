@@ -49,10 +49,8 @@ void setup() {
 } 
   
 void loop() {
-  // ----- LINE SENSOR TEST -----
-  
  
-  // ----- LCD TEST -----
+ 
   
 }
 
@@ -73,13 +71,8 @@ void forward(int leftSpeed, int rightSpeed) { setLeftMotor(leftSpeed); setRightM
 void backward(int leftSpeed, int rightSpeed) { setLeftMotor(-leftSpeed); setRightMotor(-rightSpeed); }
 void stopMotors() { analogWrite(ENA, 0); analogWrite(ENB, 0); digitalWrite(IN1, LOW); digitalWrite(IN2, LOW); digitalWrite(IN3, LOW); digitalWrite(IN4, LOW); }
 
-// ---------- BUZZER ----------
-void blinkBuzzer(int times) {
-  for (int i = 0; i < times; i++) {
-    digitalWrite(buzzer, HIGH); delay(120);
-    digitalWrite(buzzer, LOW); delay(80);
-  }
-}
+
+
 
 
 }
