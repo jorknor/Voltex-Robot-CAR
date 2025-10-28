@@ -19,21 +19,8 @@ void setup() {
 }
 
 void loop() {
-  int leftVal = analogRead(sensorLeft);
-  int midVal  = analogRead(sensorCenter);
-  int rightVal = analogRead(sensorRight);
-
-  // Toon rauwe waarden (0–1023)
-  Serial.print("L: "); Serial.print(leftVal);
-  Serial.print("  C: "); Serial.print(midVal);
-  Serial.print("  R: "); Serial.print(rightVal);
-
-  // Zwart/wit interpretatie
-  Serial.print("  => ");
-  Serial.print(leftVal < threshold ? "L=ZWART " : "L=WIT ");
-  Serial.print(midVal < threshold ? "C=ZWART " : "C=WIT ");
-  Serial.print(rightVal < threshold ? "R=ZWART" : "R=WIT");
-  Serial.println();
+  
+  Serial.println(lineSensors[1]);
 
   delay(300);
 }
