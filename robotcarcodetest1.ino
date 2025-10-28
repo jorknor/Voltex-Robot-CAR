@@ -16,7 +16,7 @@ const int ENA = 3;
 const int IN1 = 4;
 const int IN2 = 5;
 
-// Motor B (L298N)
+
 const int ENB = 6;
 const int IN3 = 9;
 const int IN4 = 10;
@@ -92,7 +92,7 @@ void setLeftMotor(int speed) {
 }
 
 void setRightMotor(int speed) {
-  speed = constrain(speed, -256, 255);
+  speed = constrain(speed, -255, 255);
   if (speed >= 0) { digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW); analogWrite(ENB, speed); }
   else { digitalWrite(IN3, LOW); digitalWrite(IN4, HIGH); analogWrite(ENB, -speed); }
 }
@@ -105,4 +105,4 @@ void stopMotors() { analogWrite(ENA, 0); analogWrite(ENB, 0); digitalWrite(IN1, 
 
 
 
-}
+
