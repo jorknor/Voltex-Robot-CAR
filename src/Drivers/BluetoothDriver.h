@@ -1,3 +1,4 @@
+#pragma once
 #include <SoftwareSerial.h>
 #define BRX 12
 #define BTX 13
