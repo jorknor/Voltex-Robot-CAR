@@ -24,6 +24,13 @@ void slaveState(struct State* currState){
             currentState->id = Idle;
       }
    }
+  if (middleDistance_cm <20){
+    changeMotorSpeed(-10);
+  }
+  else if (middleDistance_cm >40){
+    changeMotorSpeed(10);
+  }
 }
+
 
 
