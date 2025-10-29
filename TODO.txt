@@ -1,15 +1,16 @@
 
 Taak:                 Naam:           Status:
 
-LineSensor driver       - Niemand       Niet klaar
+LineSensor driver       - Niemand       Klaar
 
-DistanceSensor driver   - Alex          Bezig
+DistanceSensor driver   - Alex          Klaar
 
-Bluetooth               - Jorrit        Bezig
+Bluetooth               - Jorrit        Klaar
 
-Motor driver            - Niemand       Niet klaar
+Motor driver            - Niemand       klaar
 
-MainStateMachine        - Niemand       Niet klaar
+MainStateMachine        - Niemand       klaar
 
+serial comunication moet checken of de string complete is - Jorrit   niet klaar
 
 
