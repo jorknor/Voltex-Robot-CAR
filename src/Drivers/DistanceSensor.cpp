@@ -1,6 +1,6 @@
 #include "DistanceSensor.h"
 
-unsigned int lefDistance_cm;
+unsigned int leftDistance_cm;
 unsigned int rightDistance_cm;
 unsigned int middleDistance_cm;
 
