@@ -1,9 +1,9 @@
 #pragma once
 #include <Arduino.h>
-#define trigPin  2
-#define leftEchoPin  3
-#define rightEchoPin  4
-#define middleEchoPin  5
+#define trigPin  8
+#define leftEchoPin  11
+#define rightEchoPin  9
+#define middleEchoPin 10
 
 extern unsigned int leftDistance_cm;
 extern unsigned int middleDistance_cm;
