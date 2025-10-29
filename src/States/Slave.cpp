@@ -5,7 +5,7 @@
 
 void slaveState(struct State* currState){
   if (lineSensors[0] && lineSensors[1] && lineSensors[2] && lineSensors[3]){
-    setMotorState(FORWARD);
+    setMotorState(FORWARDS);
   }
   else if(lineSensors[1] == HIGH){
     setMotorState(LEFT);
@@ -20,8 +20,8 @@ void slaveState(struct State* currState){
     setMotorState(HARD_RIGHT);
   }
   else{
-      if (currState->currentEvent == Slave) {
-            currentState->id = Idle;
+      if (currState->id == Slave) {
+            currState->id = Idle;
       }
    }
   if (middleDistance_cm <20){
@@ -31,7 +31,3 @@ void slaveState(struct State* currState){
     changeMotorSpeed(10);
   }
 }
-
-
-
-
