@@ -18,18 +18,25 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
-
+#include "Drivers/LineSensor.h"
 
 
 void setup() {
+    lineSensorInit();
+    Serial.begin (9600);
+  
 
-}
-
-void loop() {
   
 }
 
+void loop() {
+    Serial.print(lineSensors[0]);
+    lineSensorUpdate();
+    delay(300);
+}
+
 // ---------- EEPROM ----------
+/*
 void saveSettings() {
   EEPROM.update(EEPROM_ADDR_SPEED, (uint8_t)baseSpeed);
   EEPROM.update(EEPROM_ADDR_STATE, (uint8_t)state);
@@ -48,3 +55,7 @@ void clearSettings() {
   EEPROM.update(EEPROM_ADDR_SPEED, baseSpeed);
   EEPROM.update(EEPROM_ADDR_STATE, state);
 }
+*/
+
+
+
