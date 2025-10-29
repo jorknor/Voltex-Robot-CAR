@@ -18,7 +18,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
-#include "Drivers/LineSensor.h"
+#include "Drivers/LineSensor.hpp"
 
 
 void setup() {
