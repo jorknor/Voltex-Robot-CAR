@@ -30,8 +30,7 @@ enum StateID : char {
 //these are generated when some piece of information is recieved
 enum Event : char {
     None,
-    StopCar,
-    StartCar
+    InputComplete
 };
 
 //holds the type of state and the event currently being handeled
