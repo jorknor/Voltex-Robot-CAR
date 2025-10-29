@@ -1,5 +1,7 @@
-String inputString = "";
-bool stringComplete = false;
+#include "BluetoothDriver.h"
+char bluetoothInputString[BLUETOOTH_BUFFER_SIZE] = {0};
+bool bluetoothStringComplete = false;
+int bluetoothInputSize = 0;
 SoftwareSerial bluetooth(BRX, BTX);
 void bluetoothInit() {
   pinMode(BRX, INPUT);
@@ -17,7 +19,9 @@ void bluetoothUpdate() {
       stringComplete = true;
     }
     if (stringComplete == false){// Add it to the inputString
-    inputString += inChar;
+      if (bluetoothInputSize < BLUETOOTH_BUFFER_SIZE){
+    bluetoothInputString[bluetoothInputSize++] = inChar;
+        }
     }
   }
 }
