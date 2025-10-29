@@ -36,25 +36,25 @@ void setMotorState(enum MotorState newMotorState) {
       setMotorParams(0, 0, 0, 0);
       break;
     case FORWARDS:
-      setMotorParams(HIGH, LOW, HIGH, LOW);
+      setMotorParams(LOW, HIGH, LOW, HIGH);
       break;
     case BACKWARDS:
-      setMotorParams(LOW, HIGH, LOW, HIGH);
+      setMotorParams(HIGH, LOW, HIGH, LOW);
     case LEFT:
       currentMotorASpeed = (unsigned char) currentMotorASpeed*TURN_FACTOR;
       currentMotorBSpeed = (unsigned char) currentMotorBSpeed*(1 + TURN_FACTOR);
-      setMotorParams(HIGH, LOW, HIGH, LOW);
+      setMotorParams(LOW, HIGH, LOW, HIGH);
       break;
     case RIGHT:
       currentMotorASpeed = (unsigned char) currentMotorASpeed*(1 + TURN_FACTOR);
       currentMotorBSpeed = (unsigned char) currentMotorBSpeed*TURN_FACTOR;
-      setMotorParams(HIGH, LOW, HIGH, LOW);
+      setMotorParams(LOW, HIGH, LOW, HIGH);
       break;
     case HARD_LEFT:
-      setMotorParams(LOW, HIGH, HIGH, LOW);
+      setMotorParams(HIGH, LOW, LOW, HIGH);
       break;
     case HARD_RIGHT:
-      setMotorParams(HIGH, LOW, LOW, HIGH);
+      setMotorParams(LOW, HIGH, HIGH, LOW);
     default:
       break;
   }
