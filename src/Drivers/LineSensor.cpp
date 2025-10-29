@@ -1,4 +1,4 @@
-#include "LineSensor.h"
+#include "LineSensor.hpp"
 int lineSensors [4] ={0};
 void lineSensorInit(){
   pinmode (HLS_PIN, input);
@@ -12,6 +12,7 @@ void lineSensorUpdate(){
   lineSensors[2] = digitalRead(MRS_PIN);
   lineSensors[3] = digitalRead(HRS_PIN);
 }
+
 
 
 
