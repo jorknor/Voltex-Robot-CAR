@@ -46,18 +46,36 @@ void parseArguments(char* data, int size) {
     }
 }
 
+void flushArguments() {
+    argumentCount = 0;
+    currentState.currentEvent = None;
+}
+
 
 void inputManagerUpdate() {
+    //make sure that the input is handeled
+    if (currentState.currentEvent == InputComplete) {
+        return;
+    }
+
     if (serialInputComplete) {
         parseArguments(serialBuffer, serialInputSize);
         serialInputSize = 0;
-        serialInputComplete = 0;
-    } else if (bluetoothInputComplete) {
+        serialInputComplete = false;
+        currentState.currentEvent = InputComplete;
+    } else if (bluetoothStringComplete) {
         parseArguments(bluetoothInputString, bluetoothInputSize);
         
-        bluetoothInputComplete = false;
+        bluetoothStringComplete = false;
         bluetoothInputSize = 0;
         
     }
+
+    if (strncmp(inputBuffer[0], "setStateIdle", INPUT_WORD_SIZE) == 0) {
+        Serial.print("changed state to idle\r\n");
+        currentState.id = Idle;
+        flushArguments();
+    }
+
 }
 
