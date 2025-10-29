@@ -1,8 +1,8 @@
 #pragma once
-#DEFINE trigPin  2
-#DEFINE leftEchoPin  3
-#DEFINE rightEchoPin  4
-#DEFINE middleEchoPin  5
+#define trigPin  2
+#define leftEchoPin  3
+#define rightEchoPin  4
+#define middleEchoPin  5
 extern unsigned int leftDistance_cm;
 extern unsigned int middleDistance_cm;
 extern unsigned int rightDistance_cm;
