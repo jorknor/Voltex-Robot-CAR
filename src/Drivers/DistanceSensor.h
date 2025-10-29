@@ -8,6 +8,4 @@
 extern unsigned int leftDistance_cm;
 extern unsigned int middleDistance_cm;
 extern unsigned int rightDistance_cm;
-unsigned int getDistanceLeft();
-unsigned int getDistanceMiddle();
-unsigned int getDistanceRight();
+void distanceUpdate();
