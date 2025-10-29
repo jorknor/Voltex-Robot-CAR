@@ -1,2 +1,3 @@
 #pragma once
-void remoteControlState();
+void remoteControlState(struct State* currState);
+
