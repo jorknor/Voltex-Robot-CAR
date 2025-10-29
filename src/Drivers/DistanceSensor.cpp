@@ -1,4 +1,5 @@
-#include <distance_sensor.h>
+#include "DistanceSensor.h"
+
 unsigned int getDistanceLeft() {
 unsigned long leftDuration = pulseIn(leftEchoPin, HIGH, 10000);
 unsigned int leftDistance_cm = leftDuration * 0.034 / 2;

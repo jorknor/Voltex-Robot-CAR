@@ -22,7 +22,9 @@
 //these are the names of the different states
 enum StateID : char {
     Idle,
-    Slave
+    Slave,
+    RemoteControl,
+    Autonomous
 };
 
 //these are generated when some piece of information is recieved
