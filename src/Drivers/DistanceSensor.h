@@ -1,4 +1,5 @@
 #pragma once
+#include <Arduino.h>
 #DEFINE trigPin  2
 #DEFINE leftEchoPin  3
 #DEFINE rightEchoPin  4
