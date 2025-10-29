@@ -4,9 +4,10 @@
 #define MRS_PIN A2
 #define HRS_PIN A3
 
-extern bool lineSensors[4]
+extern int lineSensors[4];
 void lineSensorInit();
 void lineSensorUpdate();
+
 
 
 
