@@ -5,7 +5,8 @@
 #define rightEchoPin  9
 #define middleEchoPin 10
 
-extern unsigned int leftDistance_cm;
-extern unsigned int middleDistance_cm;
-extern unsigned int rightDistance_cm;
-void distanceUpdate();
+extern int leftDistance_cm;
+extern int middleDistance_cm;
+extern int rightDistance_cm;
+void distanceSendorUpdate();
+void distanceSensorInit();
