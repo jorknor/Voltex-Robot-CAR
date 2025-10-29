@@ -48,7 +48,11 @@ void parseArguments(char* data, int size) {
 
 
 void inputManagerUpdate() {
-    if (bluetoothInputComplete) {
+    if (serialInputComplete) {
+        parseArguments(serialBuffer, serialInputSize);
+        serialInputSize = 0;
+        serialInputComplete = 0;
+    } else if (bluetoothInputComplete) {
         parseArguments(bluetoothInputString, bluetoothInputSize);
         
         bluetoothInputComplete = false;
