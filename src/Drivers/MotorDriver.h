@@ -35,4 +35,5 @@ void changeMotorSpeed(unsigned char speed);
 
 //set the direction of the car
 void setMotorState(enum MotorState newMotorState);
+void motorDriverInit();
 

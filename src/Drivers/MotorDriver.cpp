@@ -25,7 +25,14 @@ void changeMotorSpeed(unsigned char speed) {
   currentMotorASpeed -= speed;
   currentMotorBSpeed -= speed;
 }
-
+void motorDriverInit(){
+  pinMode (MOTOR_A_PWM, OUTPUT);
+  pinMode (MOTOR_B_PWM, OUTPUT);
+  pinMode (MOTOR_A_IN1, OUTPUT);
+  pinMode (MOTOR_A_IN2, OUTPUT);
+  pinMode (MOTOR_B_IN3, OUTPUT);
+  pinMode (MOTOR_B_IN4, OUTPUT);  
+}
 void setMotorState(enum MotorState newMotorState) {
   if (currentMotorState == newMotorState) {
     return;
