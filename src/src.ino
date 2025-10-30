@@ -18,21 +18,35 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <EEPROM.h>
-#include "Drivers/LineSensor.hpp"
-
+#include "MainStateMachine.h"
+#include "InputManager.h"
+#include "Drivers/LineSensor.h"
+#include "Drivers/DistanceSensor.h"
+#include "Drivers/MotorDriver.h"
+#include "Drivers/SerialDriver.h"
 
 void setup() {
     lineSensorInit();
-    Serial.begin (9600);
-  
+    distanceSensorInit();
+    motorDriverInit();
+    serialInit();
 
-  
-}
+    registerNewState(Idle, &idleState);
+    registerNewState(Slave, &slaveState);
+    registerNewState(RemoteControl, &remoteControlState);
+
+}   
 
 void loop() {
-    Serial.print(lineSensors[0]);
+    //run all of the update functions
+    serialUpdate();
+    bluetoothUpdate();
+    distanceSensorUpdate();
     lineSensorUpdate();
-    delay(300);
+    inputManagerUpdate();
+
+    //execute the current state
+    runCurrentState();
 }
 
 // ---------- EEPROM ----------
