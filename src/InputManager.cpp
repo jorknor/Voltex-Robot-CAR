@@ -20,8 +20,6 @@ int strncmp( const char * s1, const char * s2, unsigned int n )
 }
 
 
-
-
 char inputBuffer[INPUT_MAX_ARGS][INPUT_WORD_SIZE] = {0};
 unsigned char argumentCount = 0;
 
