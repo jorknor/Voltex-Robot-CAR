@@ -16,9 +16,9 @@ void bluetoothUpdate() {
     char inChar = (char)bluetooth.read();
   if (inChar == '\n') {
       // Set the flag
-      stringComplete = true;
+      bluetoothStringComplete = true;
     }
-    if (stringComplete == false){// Add it to the inputString
+    if (bluetoothStringComplete == false){// Add it to the inputString
       if (bluetoothInputSize < BLUETOOTH_BUFFER_SIZE){
     bluetoothInputString[bluetoothInputSize++] = inChar;
         }
