@@ -24,17 +24,13 @@ ifeq ($(CORE), true)
 	LINK_FLAGS += ../arduino-core/*.o
 endif
 
-
 INO_NAME = src/src
-SRCS ?= $(wildcard src/Drivers/*.cpp) $(wildcard src/*.cpp)
+$(shell cp $(INO_NAME).ino $(INO_NAME).cpp)
+SRCS ?= $(wildcard src/Drivers/*.cpp) $(wildcard src/*.cpp) $(wildcard src/States/*.cpp)
 TOTAL_SRCS += $(SRCS)
-OBJS = $(TOTAL_SRCS:.cpp=.o) $(INO_NAME).o
+OBJS = $(TOTAL_SRCS:.cpp=.o)
 PORT ?= /dev/ttyUSB0
 BAUD ?= 9600
-
-$(INO_NAME).o: $(INO_NAME).ino
-	cp $(INO_NAME).ino $(INO_NAME).cpp
-	$(CXX) $(CXXFLAGS) -c $(INO_NAME).cpp -o $@
 
 
 %.o: %.cpp
