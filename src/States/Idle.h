@@ -3,5 +3,5 @@
 #include "../MainStateMachine.h"
 #include "../Drivers/MotorDriver.h"
 
-void idleState();
+void idleState(struct State* currState);
 

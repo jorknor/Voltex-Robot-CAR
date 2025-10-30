@@ -5,6 +5,6 @@
 #include "../MainStateMachine.h"
 #include "../Drivers/MotorDriver.h"
 
-void slaveState();
+void slaveState(struct State* currState);
 
 
