@@ -1,13 +1,14 @@
 #pragma once
-#include <Arduino.h>
-#define HLS_PIN A0
-#define MLS_PIN A1
-#define MRS_PIN A2
-#define HRS_PIN A3
+
+#define HLS_PIN 1
+#define MLS_PIN 10
+#define MRS_PIN 100
+#define HRS_PIN 1000
 
 extern int lineSensors[4];
 void lineSensorInit();
 void lineSensorUpdate();
+
 
 
 
