@@ -1,8 +1,4 @@
 #include "Slave.h"
-#include "../Drivers/DistanceSensor.h"
-#include "../Drivers/Linesensor.h"
-#include "../MainStateMachine.h"
-#include "../Drivers/MotorDriver.h"
 
 void slaveState(struct State* currState){
   if (/* lineSensors[0] && */lineSensors[1] && lineSensors[2] /* && lineSensors[3] */){
