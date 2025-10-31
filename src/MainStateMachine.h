@@ -1,4 +1,5 @@
 #pragma once
+#include <stddef.h>
 
 /*
  * so all you need to do to add a new state is to first:

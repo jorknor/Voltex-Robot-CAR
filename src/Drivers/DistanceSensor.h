@@ -8,5 +8,5 @@
 extern int leftDistance_cm;
 extern int middleDistance_cm;
 extern int rightDistance_cm;
-void distanceSendorUpdate();
+void distanceSensorUpdate();
 void distanceSensorInit();
