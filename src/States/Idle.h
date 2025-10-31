@@ -1,4 +1,7 @@
 #pragma once
 #include <Arduino.h>
-void idleState();
+#include "../MainStateMachine.h"
+#include "../Drivers/MotorDriver.h"
+
+void idleState(struct State* currState);
 

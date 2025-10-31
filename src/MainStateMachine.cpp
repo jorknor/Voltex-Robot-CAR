@@ -19,7 +19,7 @@ void runCurrentState() {
     void (*stateFunc)(struct State*) = stateFunctions[currentState.id];
     
     //check if the function pointer is valid
-    if (stateFunc != nullptr) {
+    if (stateFunc != NULL) {
         stateFunc(&currentState);
     }
 }
